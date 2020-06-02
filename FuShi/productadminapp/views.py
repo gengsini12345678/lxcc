@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 
 from django.urls import reverse
 
+from django.contrib.auth.decorators import  login_required
+
 from . import models
 
 import userapp
@@ -9,6 +11,7 @@ import userapp
 
 # Create your views here.
 
+@login_required
 def add_products(request):
     '''
     添加产品
@@ -38,7 +41,7 @@ def add_products(request):
         return redirect(reverse("productadminapp:product_info", kwargs={'id': productadmin.id}))
         # return render(request,'userapp/index.html')
 
-
+@login_required
 def product_info(request, id):
     '''
     产品详情页面
@@ -51,6 +54,7 @@ def product_info(request, id):
     return render(request, 'productadminapp/project_info.html', {"product": product})
 
 
+@login_required
 def product_list(request):
     '''
     查看所有的产品
@@ -69,6 +73,7 @@ def product_list(request):
         return render(request, 'productadminapp/product_list.html', {'pro_admin': pro_admin})
 
 
+@login_required
 def update_product(request, pro_id):
     '''
     修改产品
@@ -104,6 +109,7 @@ def update_product(request, pro_id):
         return redirect(reverse("productadminapp:product_list", kwargs={}))
 
 
+@login_required
 def search(request):
     '''
     查找视图处理函数

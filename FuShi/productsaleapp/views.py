@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 
 from django.urls import reverse
 
+from django.contrib.auth.decorators import  login_required
+
 import productadminapp
 
 from . import models
@@ -41,6 +43,7 @@ def add_product_sale(request):
         return render(request, 'userapp/index.html', {})
 
 
+@login_required
 def sale_list(request):
     '''
     产品销售视图处理函数
@@ -52,6 +55,7 @@ def sale_list(request):
         return render(request, 'productsaleapp/sale_list.html', {'pro_sale': pro_sale})
 
 
+@login_required
 def delete(request, pro_id):
     '''
     删除
@@ -64,6 +68,7 @@ def delete(request, pro_id):
     return redirect(reverse("productsaleapp:sale_list", kwargs={}))
 
 
+@login_required
 def search_sale(request):
     '''
     搜索

@@ -132,3 +132,7 @@ STATIC_URL = '/static/'
 # 允许session中可以保存普通对象【django通过内建的模块自动操作序列化 】
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+
+# 结合login_required 装饰器一起使用，如果用户没有登录的情况下，默认跳转的页面
+LOGIN_URL = '/userapp/login_user/'
